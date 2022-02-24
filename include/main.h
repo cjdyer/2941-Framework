@@ -32,15 +32,13 @@
  *
  * For instance, you can do `4_mtr = 50` to set motor 4's target velocity to 50
  */
-#define PROS_USE_LITERALS
+// #define PROS_USE_LITERALS
 
 #include "api.h"
 
 /**
  * You should add more #includes here
  */
-//#include "okapi/api.hpp"
-//#include "pros/api_legacy.h"
 
 /**
  * If you find doing pros::Motor() to be tedious and you'd prefer just to do
@@ -50,9 +48,11 @@
  * concurrently! The okapi namespace will export all symbols inside the pros
  * namespace.
  */
-// using namespace pros;
+using namespace pros;
 // using namespace pros::literals;
-// using namespace okapi;
+// using pros::delay;
+using std::cout;
+using std::endl;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure
@@ -75,7 +75,7 @@ void opcontrol(void);
 /**
  * You can add C++-only headers here
  */
-//#include <iostream>
+#include <iostream>
 #endif
 
 #endif  // _PROS_MAIN_H_
