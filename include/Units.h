@@ -86,13 +86,13 @@ namespace units
         bool operator<=(const distance_t& _distance) const;
         distance_t& operator+(const distance_t& _distance) const;
         distance_t& operator-(const distance_t& _distance) const;
-        distance_t& operator*(const distance_t& _distance) const;
-        distance_t& operator/(const distance_t& _distance) const;
+        distance_t& operator*(const double _distance) const;
+        distance_t& operator/(const double _distance) const;
         void operator=(const distance_t& _distance);
         void operator+=(const distance_t& _distance);
         void operator-=(const distance_t& _distance);
-        void operator*=(const distance_t& _distance);
-        void operator/=(const distance_t& _distance);
+        void operator*=(const double _distance);
+        void operator/=(const double _distance);
 
         //// friend vector_t& operator+(const angle_t& _angle, const distance_t& _distance);
 
@@ -125,13 +125,13 @@ namespace units
         bool operator<=(const voltage_t& _voltage) const;
         voltage_t& operator+(const voltage_t& _voltage) const;
         voltage_t& operator-(const voltage_t& _voltage) const;
-        voltage_t& operator*(const voltage_t& _voltage) const;
-        voltage_t& operator/(const voltage_t& _voltage) const;
+        voltage_t& operator*(const double _voltage) const;
+        voltage_t& operator/(const double _voltage) const;
         void operator=(const voltage_t& _voltage);
         void operator+=(const voltage_t& _voltage);
         void operator-=(const voltage_t& _voltage);
-        void operator*=(const voltage_t& _voltage);
-        void operator/=(const voltage_t& _voltage);
+        void operator*=(const double _voltage);
+        void operator/=(const double _voltage);
 
         /**
         * @brief Gets the value of the distance object in the specified unit
@@ -162,13 +162,13 @@ namespace units
         bool operator<=(const time_t& _time) const;
         time_t& operator+(const time_t& _time) const;
         time_t& operator-(const time_t& _time) const;
-        time_t& operator*(const time_t& _time) const;
-        time_t& operator/(const time_t& _time) const;
+        time_t& operator*(const double _time) const;
+        time_t& operator/(const double _time) const;
         void operator=(const time_t& _time);
         void operator+=(const time_t& _time);
         void operator-=(const time_t& _time);
-        void operator*=(const time_t& _time);
-        void operator/=(const time_t& _time); 
+        void operator*=(const double _time);
+        void operator/=(const double _time); 
 
         /**
         * @brief Gets the value of the distance object in the specified unit
