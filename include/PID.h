@@ -1,82 +1,52 @@
 #pragma once
-#include <string>
-#include "main.h"
+#include <functional>
+#include <thread>
+#include <mutex>
+#include "Units.h"
+
+// PID
+// 
+// Calculate a PID value
+// Be associated with an input (or multiple inputs?)
+// Give an output
+// Check for:
+//    failing
+//    Complete
+//    Timeout
+// Set target
+
+
+using pid_callback_t = std::function<void(const int32_t)>;
+
+struct PID_constants
+{
+    double kP, kI, kD;
+};
 
 class PID
 {
+public:
+    PID(PID_constants _pid_constants);
+    ~PID();
+
+    void start_pid(const units::time_t _timeout_ms);
+    void stop_pid();
+
+    void set_callback(pid_callback_t _callback);
+    void unset_callback();
+
+    void set_target();
     
-    public:
-        /**
-         * @brief Initialize new PID object with PID constants
-         *
-         * @param _kP Proportional multiplier
-         * @param _kI Integral multiplier
-         * @param _kD Derivative multipler
-         * @param _name Name of component PID is controlling
-        **/
-        PID (float _kP, float _kI, float _kD, std::string _name);
-
-        /**
-         * @brief Calculate power output for motor, given sensor value
-         *
-         * @param _sensorVal current value of affiliated sensor
-         * 
-         * @return The power for related motor
-        **/
-        int16_t Calculate(double _sensor_value);
-        
-        /**
-         * @brief Checks to see if the PID control has finished
-         * 
-         * @return true is PID is completed, flase if not
-        **/
-        bool Done();
-        
-        /**
-         * @brief Set a new target (set point) for the PID controller with specified time limit
-         *
-         * @param _target the desired finishing sensor value
-         * @param _time the maximum time allowed for the movement
-        **/
-        void SetTarget(int16_t _target, uint32_t _time, uint16_t _max_output);
-
-        /**
-         * @brief Set a new target (set point) for the PID controller
-         *
-         * @param _target the desired finishing sensor value
-        **/
-        void SetTarget(int16_t _target, uint16_t _max_output);
-
-        /**
-         * @brief Getter function for the PID's target
-         * 
-         * @return the PID target
-        **/
-        int16_t GetTarget() const;
+private:
+    void run_pid(const units::time_t _timeout_ms);
+    int16_t calculate();
     
-    protected:
-        
-    private:
-        const float kP;
-        const float kI;
-        const float kD;
+private:
+    PID_constants m_pid_constants;
 
-        const std::string name;
-        int16_t target = 0; 
-        int error;
-        double derivative;
+    Sensor* m_sensor;
 
-        uint8_t errorCounter;
-        uint8_t derivativeCounter;
-        uint8_t maxErrorCounter = 50;
-        uint8_t maxDerivativeCounter = 50;
-
-        uint32_t startTime;
-        uint32_t maxTime;
-        uint16_t maxOutput = 12000;
-
-        static constexpr uint8_t minDerivative = 2;
-        static constexpr uint16_t integralLimit = 5000;
-        static constexpr uint8_t maxCompletionError = 10;
-        static constexpr uint8_t maxDerivativeError = 10;
+    std::thread m_handler_thread;
+    std::mutex m_pid_callback_mutex;
+    pid_callback_t m_pid_callback;
 };

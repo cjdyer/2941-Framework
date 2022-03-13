@@ -68,20 +68,20 @@ namespace units
         m_angle_radians = _a * DEG_TO_RAD * (_unit == degrees) + _a *              (_unit == radians);
     }
     
-    // TODO: This might need some amount of rounding to account for errors in conversions
-    // TODO: I.E , 1 radians may not be equal to 57.2958 degrees due to memory limitations
+    //! TODO: This might need some amount of rounding to account for errors in conversions
+    //! TODO: I.E , 1 radians may not be equal to 57.2958 degrees due to memory limitations
     bool angle_t::operator==(const angle_t& _a) const { return m_angle_degrees == _a.m_angle_degrees; }
     bool angle_t::operator>(const angle_t& _a) const { return m_angle_degrees > _a.m_angle_degrees; }
     bool angle_t::operator<(const angle_t& _a) const { return m_angle_degrees < _a.m_angle_degrees; }
     bool angle_t::operator>=(const angle_t& _a) const { return m_angle_degrees >= _a.m_angle_degrees; }
     bool angle_t::operator<=(const angle_t& _a) const { return m_angle_degrees <= _a.m_angle_degrees; }
 
-    // TODO: Check if we can use the void return type instead of an object reference
+    //! TODO: Check if we can use the void return type instead of an object reference
     
-    angle_t& angle_t::operator+(const angle_t& _a) const { return angle_t(_a.m_angle_degrees + m_angle_degrees, degrees); }
-    angle_t& angle_t::operator-(const angle_t& _a) const { return angle_t(m_angle_degrees - _a.m_angle_degrees, degrees); }
-    angle_t& angle_t::operator*(const angle_t& _a) const { return angle_t(m_angle_degrees * _a.m_angle_degrees, degrees); }
-    angle_t& angle_t::operator/(const angle_t& _a) const { return angle_t(m_angle_degrees / _a.m_angle_degrees, degrees); }
+    angle_t angle_t::operator+(const angle_t& _a) const { return angle_t(m_angle_degrees + _a.m_angle_degrees); }
+    angle_t angle_t::operator-(const angle_t& _a) const { return angle_t(m_angle_degrees - _a.m_angle_degrees); }
+    angle_t angle_t::operator*(const angle_t& _a) const { return angle_t(m_angle_degrees * _a.m_angle_degrees); }
+    angle_t angle_t::operator/(const angle_t& _a) const { return angle_t(m_angle_degrees / _a.m_angle_degrees); }
     
     void angle_t::operator=(const angle_t& _a) { set(_a.degrees); }
     void angle_t::operator+=(const angle_t& _a) { set(m_angle_degrees + _a.m_angle_degrees); }
@@ -103,16 +103,22 @@ namespace units
     bool distance_t::operator<=(const distance_t& _distance) const { return m_distance_inches <= _distance.m_distance_inches; }
 
     
-    distance_t& distance_t::operator+(const distance_t& _distance) const { return distance_t(m_distance_inches + _distance.m_distance_inches); } 
-    distance_t& distance_t::operator-(const distance_t& _distance) const { return distance_t(m_distance_inches - _distance.m_distance_inches); }
-    distance_t& distance_t::operator*(const double _scalar) const { return distance_t(m_distance_inches * _scalar); }
-    distance_t& distance_t::operator/(const double _scalar) const { return distance_t(m_distance_inches / _scalar); }
+    distance_t distance_t::operator+(const distance_t& _distance) const { return distance_t(m_distance_inches + _distance.m_distance_inches); } 
+    distance_t distance_t::operator-(const distance_t& _distance) const { return distance_t(m_distance_inches - _distance.m_distance_inches); }
+    distance_t distance_t::operator*(const double _scalar) const { return distance_t(m_distance_inches * _scalar); }
+    distance_t distance_t::operator/(const double _scalar) const { return distance_t(m_distance_inches / _scalar); }
 
     void distance_t::operator=(const distance_t& _distance) { m_distance_inches = _distance.m_distance_inches; }
     void distance_t::operator+=(const distance_t& _distance) { m_distance_inches += _distance.m_distance_inches; }
     void distance_t::operator-=(const distance_t& _distance) { m_distance_inches -= _distance.m_distance_inches; }
     void distance_t::operator*=(const double _scalar) { m_distance_inches *= _scalar; }
     void distance_t::operator/=(const double _scalar) { m_distance_inches /= _scalar; }
+
+    std::ostream& operator<<(std::ostream& _os, const distance_t& _distance)
+    {
+        _os << _distance.m_distance_inches << " inches";
+        return _os;
+    }
 
     //Voltage-----------------------------------------------------------------------------------------------------------------------------------
     double voltage_t::get(const voltage_units& _unit) const
@@ -127,16 +133,22 @@ namespace units
     bool voltage_t::operator<=(const voltage_t& _voltage) const { return m_voltage_millivolts <= _voltage.m_voltage_millivolts; }
 
     
-    voltage_t& voltage_t::operator+(const voltage_t& _voltage) const { return voltage_t(m_voltage_millivolts + _voltage.m_voltage_millivolts); } 
-    voltage_t& voltage_t::operator-(const voltage_t& _voltage) const { return voltage_t(m_voltage_millivolts - _voltage.m_voltage_millivolts); }
-    voltage_t& voltage_t::operator*(const double _scalar) const { return voltage_t(m_voltage_millivolts * _scalar); }
-    voltage_t& voltage_t::operator/(const double _scalar) const { return voltage_t(m_voltage_millivolts / _scalar); }
+    voltage_t voltage_t::operator+(const voltage_t& _voltage) const { return voltage_t(m_voltage_millivolts + _voltage.m_voltage_millivolts); } 
+    voltage_t voltage_t::operator-(const voltage_t& _voltage) const { return voltage_t(m_voltage_millivolts - _voltage.m_voltage_millivolts); }
+    voltage_t voltage_t::operator*(const double _scalar) const { return voltage_t(m_voltage_millivolts * _scalar); }
+    voltage_t voltage_t::operator/(const double _scalar) const { return voltage_t(m_voltage_millivolts / _scalar); }
 
     void voltage_t::operator=(const voltage_t& _voltage) { m_voltage_millivolts = _voltage.m_voltage_millivolts; }
     void voltage_t::operator+=(const voltage_t& _voltage) { m_voltage_millivolts += _voltage.m_voltage_millivolts; }
     void voltage_t::operator-=(const voltage_t& _voltage) { m_voltage_millivolts -= _voltage.m_voltage_millivolts; }
     void voltage_t::operator*=(const double _scalar) { m_voltage_millivolts *= _scalar; }
     void voltage_t::operator/=(const double _scalar) { m_voltage_millivolts /= _scalar; }
+
+    std::ostream& operator<<(std::ostream& _os, const voltage_t& _voltage)
+    {
+        _os << _voltage.m_voltage_millivolts << " millivolts";
+        return _os;
+    }
 
     //Time--------------------------------------------------------------------------------------------------------------------------------------
     double time_t::get(const time_units& _unit) const
@@ -151,15 +163,21 @@ namespace units
     bool time_t::operator<=(const time_t& _time) const { return m_time_milliseconds <= _time.m_time_milliseconds; }
 
     
-    time_t& time_t::operator+(const time_t& _time) const { return time_t(m_time_milliseconds + _time.m_time_milliseconds); } 
-    time_t& time_t::operator-(const time_t& _time) const { return time_t(m_time_milliseconds - _time.m_time_milliseconds); }
-    time_t& time_t::operator*(const double _scalar) const { return time_t(m_time_milliseconds * _scalar); }
-    time_t& time_t::operator/(const double _scalar) const { return time_t(m_time_milliseconds / _scalar); }
+    time_t time_t::operator+(const time_t& _time) const { return time_t(m_time_milliseconds + _time.m_time_milliseconds); } 
+    time_t time_t::operator-(const time_t& _time) const { return time_t(m_time_milliseconds - _time.m_time_milliseconds); }
+    time_t time_t::operator*(const double _scalar) const { return time_t(m_time_milliseconds * _scalar); }
+    time_t time_t::operator/(const double _scalar) const { return time_t(m_time_milliseconds / _scalar); }
 
     void time_t::operator=(const time_t& _time) { m_time_milliseconds = _time.m_time_milliseconds; }
     void time_t::operator+=(const time_t& _time) { m_time_milliseconds += _time.m_time_milliseconds; }
     void time_t::operator-=(const time_t& _time) { m_time_milliseconds -= _time.m_time_milliseconds; }
     void time_t::operator*=(const double _scalar) { m_time_milliseconds *= _scalar; }
     void time_t::operator/=(const double _scalar) { m_time_milliseconds /= _scalar; }
+
+    std::ostream& operator<<(std::ostream& _os, const time_t& _time)
+    {
+        _os << _time.m_time_milliseconds << " milliseconds";
+        return _os;
+    }
 
 } // namespace units

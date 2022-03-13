@@ -50,7 +50,6 @@
  */
 using namespace pros;
 // using namespace pros::literals;
-// using pros::delay;
 using std::cout;
 using std::endl;
 

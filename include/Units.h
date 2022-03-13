@@ -37,10 +37,10 @@ namespace units
         bool operator==(const angle_t& _a) const;
         void operator=(const angle_t& _a);
         
-        angle_t& operator+(const angle_t& _a) const;
-        angle_t& operator-(const angle_t& _a) const;
-        angle_t& operator*(const angle_t& _a) const;
-        angle_t& operator/(const angle_t& _a) const;
+        angle_t operator+(const angle_t& _a) const;
+        angle_t operator-(const angle_t& _a) const;
+        angle_t operator*(const angle_t& _a) const;
+        angle_t operator/(const angle_t& _a) const;
 
         void operator+=(const angle_t& _a);
         void operator-=(const angle_t& _a);
@@ -55,8 +55,8 @@ namespace units
 
 
     private:
-        //TODO: Assess the speed difference
-        //TODO: Conversion on set verse get
+        //! TODO: Assess the speed difference
+        //! TODO: Conversion on set verse get
         double m_angle_degrees;
         double m_angle_radians;
 
@@ -84,10 +84,10 @@ namespace units
         bool operator<(const distance_t& _distance) const;
         bool operator>=(const distance_t& _distance) const;
         bool operator<=(const distance_t& _distance) const;
-        distance_t& operator+(const distance_t& _distance) const;
-        distance_t& operator-(const distance_t& _distance) const;
-        distance_t& operator*(const double _distance) const;
-        distance_t& operator/(const double _distance) const;
+        distance_t operator+(const distance_t& _distance) const;
+        distance_t operator-(const distance_t& _distance) const;
+        distance_t operator*(const double _distance) const;
+        distance_t operator/(const double _distance) const;
         void operator=(const distance_t& _distance);
         void operator+=(const distance_t& _distance);
         void operator-=(const distance_t& _distance);
@@ -95,6 +95,7 @@ namespace units
         void operator/=(const double _distance);
 
         //// friend vector_t& operator+(const angle_t& _angle, const distance_t& _distance);
+        friend std::ostream& operator<<(std::ostream& _os, const distance_t& _distance);
 
         /**
         * @brief Gets the value of the distance object in the specified unit
@@ -110,7 +111,7 @@ namespace units
     struct voltage_t
     {
     public:
-        enum voltage_units: uint8_t
+        enum voltage_units: uint16_t
         {
             millivolt = 1,
             volt = 1000
@@ -123,15 +124,17 @@ namespace units
         bool operator<(const voltage_t& _voltage) const;
         bool operator>=(const voltage_t& _voltage) const;
         bool operator<=(const voltage_t& _voltage) const;
-        voltage_t& operator+(const voltage_t& _voltage) const;
-        voltage_t& operator-(const voltage_t& _voltage) const;
-        voltage_t& operator*(const double _voltage) const;
-        voltage_t& operator/(const double _voltage) const;
+        voltage_t operator+(const voltage_t& _voltage) const;
+        voltage_t operator-(const voltage_t& _voltage) const;
+        voltage_t operator*(const double _voltage) const;
+        voltage_t operator/(const double _voltage) const;
         void operator=(const voltage_t& _voltage);
         void operator+=(const voltage_t& _voltage);
         void operator-=(const voltage_t& _voltage);
         void operator*=(const double _voltage);
         void operator/=(const double _voltage);
+
+        friend std::ostream& operator<<(std::ostream& _os, const voltage_t& _pos);
 
         /**
         * @brief Gets the value of the distance object in the specified unit
@@ -147,7 +150,7 @@ namespace units
     struct time_t
     {
     public:
-        enum time_units: uint8_t
+        enum time_units: uint16_t
         {
             millisecond = 1,
             second = 1000
@@ -160,15 +163,17 @@ namespace units
         bool operator<(const time_t& _time) const;
         bool operator>=(const time_t& _time) const;
         bool operator<=(const time_t& _time) const;
-        time_t& operator+(const time_t& _time) const;
-        time_t& operator-(const time_t& _time) const;
-        time_t& operator*(const double _time) const;
-        time_t& operator/(const double _time) const;
+        time_t operator+(const time_t& _time) const;
+        time_t operator-(const time_t& _time) const;
+        time_t operator*(const double _time) const;
+        time_t operator/(const double _time) const;
         void operator=(const time_t& _time);
         void operator+=(const time_t& _time);
         void operator-=(const time_t& _time);
         void operator*=(const double _time);
         void operator/=(const double _time); 
+
+        friend std::ostream& operator<<(std::ostream& _os, const time_t& _pos);
 
         /**
         * @brief Gets the value of the distance object in the specified unit
