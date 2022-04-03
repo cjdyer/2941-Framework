@@ -50,7 +50,7 @@ private:
 private:
     PID_constants m_pid_constants;
 
-    std::thread m_handler_thread;
-    std::mutex m_pid_callback_mutex;
-    pid_callback_t m_pid_callback;
+    //std::thread m_handler_thread;
+    //std::mutex m_pid_callback_mutex;
+    //pid_callback_t m_pid_callback;
 };

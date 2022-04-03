@@ -13,21 +13,23 @@ public:
     _unit_t get();
     void reset();
 
-private:
+protected:
     units::port_t m_port;
     _unit_t offset;
 };
 
-class Rotation_Sensor: Sensor<units::angle_t>
+class RotationSensor: Sensor<units::angle_t>
 {
 public:
-    using Sensor<angle_t>::reset;
-    using Sensor<angle_t>::get;
+    using Sensor::Sensor;
+    using Sensor::reset;
+    using Sensor::get;
 };
 
-class Distance_Sensor: Sensor<units::distance_t>
+class DistanceSensor: Sensor<units::distance_t>
 {
 public:
-    using Sensor<distance_t>::reset;
-    using Sensor<distance_t>::get;
+    using Sensor::Sensor;
+    using Sensor::reset;
+    using Sensor::get;
 };
