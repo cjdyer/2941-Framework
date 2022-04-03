@@ -24,7 +24,7 @@ public:
     /**
      * @brief Sets the ports of motors in the group.
      * 
-     * ! TODO: Make this protected but able to be used by confing files
+     * TODO: Make this protected but able to be used by confing files
      *
      * @param _motors a list of port numbers which this container should control
     **/

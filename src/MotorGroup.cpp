@@ -7,13 +7,8 @@ MotorGroup::MotorGroup(const uint8_t _number_motors)
 
 void MotorGroup::PowerMotors(voltage_t _voltage)
 {
-    m_motor_one.move_voltage(_voltage.get(voltage_t::millivolt));
-    m_motor_two.move_velocity(_voltage.get(voltage_t::millivolt));
-}
-
-void SetNumberOfMotors(const uint8_t _number_motors)
-{
-
+    for (motor : m_motors)
+        motor.move_voltage(_voltage.get(voltage_t::millivolt));
 }
 
 double MotorGroup::GetSensor() const
@@ -23,6 +18,6 @@ double MotorGroup::GetSensor() const
 
 void MotorGroup::ResetSensors()
 {
-    m_motor_one.tare_position();
-    m_motor_two.tare_position();
+    for (motor : m_motors)
+        motor.tare_position();
 }
