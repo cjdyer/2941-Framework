@@ -15,13 +15,13 @@ namespace Auton
 
     PID rotatePID
     (
-        12.7, 0.3, 0,           // kP, kI, kD
+        {12.7, 0.3, 0},         // kP, kI, kD
         "Chassis Rotate PID"    // PIDname
     );
 
     PID straightPID
     (
-        17, 0.7, 0,             // kP, kI, kD
+        {17, 0.7, 0},           // kP, kI, kD
         "Chassis Straight PID"  // PIDname
     );
 
@@ -46,8 +46,8 @@ namespace Auton
         */
        
         //definitly not necessarily final, but I reckon this is about right
-        while(Chassis::leftDrive.GetSensor() < _exit_distance && Chassis::rightDrive.GetSensor() < _exit_distance)
-            delay(1);
+        // while(Chassis::leftDrive.GetSensor() < _exit_distance && Chassis::rightDrive.GetSensor() < _exit_distance)
+        //     delay(1);
     }
 
     void Rotate(angle_t _angle)
@@ -69,8 +69,8 @@ namespace Auton
         then finish as soon as new thread has started working
         */
 
-        //definitly not necessarily final, but I reckon this is about right
-        while(Chassis::leftDrive.GetSensor() < _exit_distance && Chassis::rightDrive.GetSensor() > -_exit_distance)
-            delay(1);
+        // definitly not necessarily final, but I reckon this is about right
+        // while(Chassis::leftDrive.GetSensor() < _exit_distance && Chassis::rightDrive.GetSensor() > -(_exit_distance))
+        //     delay(1);
     }
 };

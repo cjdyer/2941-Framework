@@ -2,15 +2,19 @@
 #include "Chassis.h"
 #include "Controller.h"
 
+//Create a robot c like motor sensor setup where users tell the program what is plugged into each port
+// Could this be in a config file? JSON?
+// Chassis::drive_motor_config(2);
+// Object::config
+
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
 void disabled() {}
-
+ 
 /**
- * Runs after initialize(), and before autonomous when connected to the Field
  * Management System or the VEX Competition Switch. This is intended for
  * competition-specific initialization routines, such as an autonomous selector
  * on the LCD.
@@ -51,7 +55,9 @@ void opcontrol()
 	while (true)
 	{
 		Chassis::Tank();
-		
+
+		// TODO: Make interfaces, things like lifts and claws 
+
 		delay(20);
 	}
 }

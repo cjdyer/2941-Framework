@@ -12,7 +12,7 @@ namespace units
     // typedef short distance_t;
     // typedef short voltage_t;
     // typedef short angle_t;
-    // typedef long time_t;
+    // typedef long duration_t;
     typedef char port_t;
 
     // Angle_t:
@@ -55,8 +55,8 @@ namespace units
 
 
     private:
-        //! TODO: Assess the speed difference
-        //! TODO: Conversion on set verse get
+        // TODO: Assess the speed difference
+        // TODO: Conversion on set verse get
         double m_angle_degrees;
         double m_angle_radians;
 
@@ -147,40 +147,40 @@ namespace units
         double m_voltage_millivolts;
     };
 
-    struct time_t
+    struct duration_t
     {
     public:
-        enum time_units: uint16_t
+        enum duration_units: uint16_t
         {
             millisecond = 1,
             second = 1000
         };
 
-        time_t(const double _time = 0, const time_units = millisecond);
+        duration_t(const double _time = 0, const duration_units = millisecond);
 
-        bool operator==(const time_t& _time) const;
-        bool operator>(const time_t& _time) const;
-        bool operator<(const time_t& _time) const;
-        bool operator>=(const time_t& _time) const;
-        bool operator<=(const time_t& _time) const;
-        time_t operator+(const time_t& _time) const;
-        time_t operator-(const time_t& _time) const;
-        time_t operator*(const double _time) const;
-        time_t operator/(const double _time) const;
-        void operator=(const time_t& _time);
-        void operator+=(const time_t& _time);
-        void operator-=(const time_t& _time);
+        bool operator==(const duration_t& _time) const;
+        bool operator>(const duration_t& _time) const;
+        bool operator<(const duration_t& _time) const;
+        bool operator>=(const duration_t& _time) const;
+        bool operator<=(const duration_t& _time) const;
+        duration_t operator+(const duration_t& _time) const;
+        duration_t operator-(const duration_t& _time) const;
+        duration_t operator*(const double _time) const;
+        duration_t operator/(const double _time) const;
+        void operator=(const duration_t& _time);
+        void operator+=(const duration_t& _time);
+        void operator-=(const duration_t& _time);
         void operator*=(const double _time);
         void operator/=(const double _time); 
 
-        friend std::ostream& operator<<(std::ostream& _os, const time_t& _pos);
+        friend std::ostream& operator<<(std::ostream& _os, const duration_t& _pos);
 
         /**
         * @brief Gets the value of the distance object in the specified unit
         * 
-        * @param A time_t::units value to specify what unit the return the value uses
+        * @param A duration_t::units value to specify what unit the return the value uses
         **/
-        double get(const time_units& _unit) const;
+        double get(const duration_units& _unit) const;
 
     private:
         double m_time_milliseconds;
@@ -198,8 +198,8 @@ namespace units
         voltage_t operator "" _millivolts(long double _voltage);
         voltage_t operator "" _volts(long double _voltage);
         
-        time_t operator "" _milliseconds(long double _time);
-        time_t operator "" _seconds(long double _time);
+        duration_t operator "" _milliseconds(long double _duration);
+        duration_t operator "" _seconds(long double _duration);
     }  // namespace literals
 
 }; // namespace units

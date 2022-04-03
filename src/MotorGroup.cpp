@@ -1,15 +1,19 @@
-#include "MotorContainer.h"
+#include "MotorGroup.h"
 
-MotorGroup::MotorGroup(const port_t _motor_one, const port_t _motor_two)
- : m_motor_one(_motor_one), m_motor_two(_motor_two)
+MotorGroup::MotorGroup(const uint8_t _number_motors)
 {
-    
+    m_motors.reserve(_number_motors);
 }
 
 void MotorGroup::PowerMotors(voltage_t _voltage)
 {
-    m_motor_one.tare_position();
-    m_motor_two.tare_position();
+    m_motor_one.move_voltage(_voltage.get(voltage_t::millivolt));
+    m_motor_two.move_velocity(_voltage.get(voltage_t::millivolt));
+}
+
+void SetNumberOfMotors(const uint8_t _number_motors)
+{
+
 }
 
 double MotorGroup::GetSensor() const

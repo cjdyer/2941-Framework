@@ -1,6 +1,8 @@
 #pragma once
 #include "main.h"
-#include "units.h"
+#include "Units.h"
+#include <vector>
+using namespace units;
 
 class MotorGroup
 {
@@ -8,9 +10,9 @@ public:
     /**
      * @brief A DriveTrain object controls one half of your robot's chassis. (for a tank or H drive)
      * 
-     * @param _motors a list of port numbers which this container should control
+     * @param _number_motors The amount of motors
     **/
-    MotorGroup(const port_t _motor_one, const port_t _motor_two);
+    MotorGroup(const uint8_t _number_motors);
 
     /**
      * @brief Sends specified volatage to all  motors.
@@ -20,11 +22,20 @@ public:
     void PowerMotors(voltage_t _voltage);
 
     /**
+     * @brief Sets the ports of motors in the group.
+     * 
+     * ! TODO: Make this protected but able to be used by confing files
+     *
+     * @param _motors a list of port numbers which this container should control
+    **/
+    void SetNumberOfMotors(const port_t* _motors);
+
+    /**
      * @brief Gets the value from the front motor's encoder.
      * 
      * @return The sensor value of the first motor
     **/
-    double GetSensor() const;
+    distance_t GetSensor() const;
 
     /**
      * @brief 
@@ -34,6 +45,5 @@ public:
     void ResetSensors();
 
 private:
-    Motor m_motor_one;
-    Motor m_motor_two;
+    std::vector<Motor> m_motors;
 };

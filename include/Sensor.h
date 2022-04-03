@@ -1,30 +1,33 @@
 #pragma once
 #include "Units.h"
 
-template <type _unit_t>
+using namespace units;
+
+template <typename _unit_t>
 class Sensor
 {
 public:
     Sensor(port_t _port);
     ~Sensor();
 
-    virtual _unit_t get();
-    virtual void reset();
+    _unit_t get();
+    void reset();
 
 private:
     units::port_t m_port;
+    _unit_t offset;
 };
 
 class Rotation_Sensor: Sensor<units::angle_t>
 {
 public:
-    angle_t get() override;
-    void reset() override;
+    using Sensor<angle_t>::reset;
+    using Sensor<angle_t>::get;
 };
 
 class Distance_Sensor: Sensor<units::distance_t>
 {
 public:
-    distance_t get() override;
-    void reset() override;
+    using Sensor<distance_t>::reset;
+    using Sensor<distance_t>::get;
 };

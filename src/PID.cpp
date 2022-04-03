@@ -10,7 +10,7 @@ PID::~PID()
     stop_pid();
 }
 
-void PID::start_pid(const units::time_t _timeout_ms)
+void PID::start_pid(const units::duration_t _timeout_ms)
 {
     stop_pid();
     m_handler_thread = std::thread(&PID::run_pid, this, _timeout_ms);
@@ -18,7 +18,6 @@ void PID::start_pid(const units::time_t _timeout_ms)
 
 void PID::stop_pid()
 {
-
     if (m_handler_thread.joinable())
     {
         m_handler_thread.join();
@@ -42,7 +41,7 @@ void PID::set_target()
 
 }
     
-void PID::run_pid(const units::time_t _timeout_ms)
+void PID::run_pid(const units::duration_t _timeout_ms)
 {
     // PID does stuff here
 
@@ -54,7 +53,7 @@ int16_t PID::calculate()
 {
     static double past_sensor_val, integral;
     static uint64_t last_time, current_time, time_difference;
-    double sensor_value = m_sensor.get();
+    double sensor_value = 0.0; // m_sensor.get();
 
     currentTime = pros::micros();
     time_difference = currentTime - last_time;

@@ -39,13 +39,13 @@ namespace units
         }
         
         //Time Literals
-        time_t operator "" _milliseconds(long double _time)
+        duration_t operator "" _milliseconds(long double _time)
         {
-            return time_t(_time, time_t::millisecond);
+            return duration_t(_time, duration_t::millisecond);
         }
-        time_t operator "" _seconds(long double _time)
+        duration_t operator "" _seconds(long double _time)
         {
-            return time_t(_time, time_t::second);
+            return duration_t(_time, duration_t::second);
         }
     } // namespace literals
 
@@ -68,15 +68,15 @@ namespace units
         m_angle_radians = _a * DEG_TO_RAD * (_unit == degrees) + _a *              (_unit == radians);
     }
     
-    //! TODO: This might need some amount of rounding to account for errors in conversions
-    //! TODO: I.E , 1 radians may not be equal to 57.2958 degrees due to memory limitations
+    // TODO: This might need some amount of rounding to account for errors in conversions
+    // TODO: I.E , 1 radians may not be equal to 57.2958 degrees due to memory limitations
     bool angle_t::operator==(const angle_t& _a) const { return m_angle_degrees == _a.m_angle_degrees; }
     bool angle_t::operator>(const angle_t& _a) const { return m_angle_degrees > _a.m_angle_degrees; }
     bool angle_t::operator<(const angle_t& _a) const { return m_angle_degrees < _a.m_angle_degrees; }
     bool angle_t::operator>=(const angle_t& _a) const { return m_angle_degrees >= _a.m_angle_degrees; }
     bool angle_t::operator<=(const angle_t& _a) const { return m_angle_degrees <= _a.m_angle_degrees; }
 
-    //! TODO: Check if we can use the void return type instead of an object reference
+    // TODO: Check if we can use the void return type instead of an object reference
     
     angle_t angle_t::operator+(const angle_t& _a) const { return angle_t(m_angle_degrees + _a.m_angle_degrees); }
     angle_t angle_t::operator-(const angle_t& _a) const { return angle_t(m_angle_degrees - _a.m_angle_degrees); }
@@ -151,30 +151,30 @@ namespace units
     }
 
     //Time--------------------------------------------------------------------------------------------------------------------------------------
-    double time_t::get(const time_units& _unit) const
+    double duration_t::get(const duration_units& _unit) const
     {
         return m_time_milliseconds * _unit;
     }
 
-    bool time_t::operator==(const time_t& _time) const { return m_time_milliseconds == _time.m_time_milliseconds; }
-    bool time_t::operator>(const time_t& _time) const { return m_time_milliseconds > _time.m_time_milliseconds; }
-    bool time_t::operator<(const time_t& _time) const { return m_time_milliseconds < _time.m_time_milliseconds; }
-    bool time_t::operator>=(const time_t& _time) const { return m_time_milliseconds >= _time.m_time_milliseconds; }
-    bool time_t::operator<=(const time_t& _time) const { return m_time_milliseconds <= _time.m_time_milliseconds; }
+    bool duration_t::operator==(const duration_t& _time) const { return m_time_milliseconds == _time.m_time_milliseconds; }
+    bool duration_t::operator>(const duration_t& _time) const { return m_time_milliseconds > _time.m_time_milliseconds; }
+    bool duration_t::operator<(const duration_t& _time) const { return m_time_milliseconds < _time.m_time_milliseconds; }
+    bool duration_t::operator>=(const duration_t& _time) const { return m_time_milliseconds >= _time.m_time_milliseconds; }
+    bool duration_t::operator<=(const duration_t& _time) const { return m_time_milliseconds <= _time.m_time_milliseconds; }
 
     
-    time_t time_t::operator+(const time_t& _time) const { return time_t(m_time_milliseconds + _time.m_time_milliseconds); } 
-    time_t time_t::operator-(const time_t& _time) const { return time_t(m_time_milliseconds - _time.m_time_milliseconds); }
-    time_t time_t::operator*(const double _scalar) const { return time_t(m_time_milliseconds * _scalar); }
-    time_t time_t::operator/(const double _scalar) const { return time_t(m_time_milliseconds / _scalar); }
+    duration_t duration_t::operator+(const duration_t& _time) const { return duration_t(m_time_milliseconds + _time.m_time_milliseconds); } 
+    duration_t duration_t::operator-(const duration_t& _time) const { return duration_t(m_time_milliseconds - _time.m_time_milliseconds); }
+    duration_t duration_t::operator*(const double _scalar) const { return duration_t(m_time_milliseconds * _scalar); }
+    duration_t duration_t::operator/(const double _scalar) const { return duration_t(m_time_milliseconds / _scalar); }
 
-    void time_t::operator=(const time_t& _time) { m_time_milliseconds = _time.m_time_milliseconds; }
-    void time_t::operator+=(const time_t& _time) { m_time_milliseconds += _time.m_time_milliseconds; }
-    void time_t::operator-=(const time_t& _time) { m_time_milliseconds -= _time.m_time_milliseconds; }
-    void time_t::operator*=(const double _scalar) { m_time_milliseconds *= _scalar; }
-    void time_t::operator/=(const double _scalar) { m_time_milliseconds /= _scalar; }
+    void duration_t::operator=(const duration_t& _time) { m_time_milliseconds = _time.m_time_milliseconds; }
+    void duration_t::operator+=(const duration_t& _time) { m_time_milliseconds += _time.m_time_milliseconds; }
+    void duration_t::operator-=(const duration_t& _time) { m_time_milliseconds -= _time.m_time_milliseconds; }
+    void duration_t::operator*=(const double _scalar) { m_time_milliseconds *= _scalar; }
+    void duration_t::operator/=(const double _scalar) { m_time_milliseconds /= _scalar; }
 
-    std::ostream& operator<<(std::ostream& _os, const time_t& _time)
+    std::ostream& operator<<(std::ostream& _os, const duration_t& _time)
     {
         _os << _time.m_time_milliseconds << " milliseconds";
         return _os;

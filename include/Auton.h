@@ -2,6 +2,8 @@
 #include "Chassis.h"
 #include "PID.h"
 #include "Units.h"
+using namespace units;
+using namespace units::literals;
 
 namespace Auton
 {
@@ -13,7 +15,7 @@ namespace Auton
      * @param _distance The number of encoder units to drive the robot
      * @param _maxOutput The maximum millivoltage to send to the drive motors (defaults to 12000)
     **/
-    void DriveStraight(distance_t _distance, voltage_t _maxOutput = 12_volts);
+    void DriveStraight(distance_t _distance, voltage_t _maxOutput = 12.0_volts);
 
     /**
      * @brief Moves the robot a set distance while allowing other actions to be preformed at the same time
@@ -23,7 +25,7 @@ namespace Auton
      * @param _distance The number of encoder units to drive the robot
      * @param _maxOutput The maximum millivoltage to send to the drive motors (defaults to 12000)
     **/
-    void DriveStraightAsynchronously(distance_t _distance, voltage_t _maxOutput = 12_volts);
+    void DriveStraightAsynchronously(distance_t _distance, voltage_t _maxOutput = 12.0_volts);
 
     /**
      * @brief Rotates the robot a set angle
@@ -33,7 +35,7 @@ namespace Auton
      * @param _angle The number of encoder units to rotate the robot
      * @param _maxOutput The maximum millivoltage to send to the drive motors (defaults to 12000)
     **/
-    void Rotate(angle_t _angle, voltage_t _maxOutput = 12_volts);
+    void Rotate(angle_t _angle, voltage_t _maxOutput = 12.0_volts);
 
     /**
      * @brief Rotates the robot a set angle while allowing other actions to be preformed at the same time
@@ -43,7 +45,7 @@ namespace Auton
      * @param _angle The number of encoder units to rotate the robot
      * @param _maxOutput The maximum millivoltage to send to the drive motors (defaults to 12000)
     **/
-    void RotateAsynchronously(angle_t _angle, voltage_t _maxOutput = 12_volts);
+    void RotateAsynchronously(angle_t _angle, voltage_t _maxOutput = 12.0_volts);
 
     /**
      * @brief Waits for any drive movements curretly executing to finish
