@@ -1,6 +1,13 @@
 #pragma once
 #include "main.h"
 
+enum class Gearset : int
+{
+    RED = 36,
+    GREEN = 18,
+    BLUE = 6
+};
+
 // Port_t:
 // Needs to have an associated port, duh
 // Needs to be assigned once?
@@ -13,7 +20,7 @@ namespace units
     // typedef short voltage_t;
     // typedef short angle_t;
     // typedef long duration_t;
-    typedef char port_t;
+    typedef short port_t;
 
     // Angle_t:
     // Coversion between RAD and DEG
@@ -39,13 +46,13 @@ namespace units
         
         angle_t operator+(const angle_t& _a) const;
         angle_t operator-(const angle_t& _a) const;
-        angle_t operator*(const angle_t& _a) const;
-        angle_t operator/(const angle_t& _a) const;
+        angle_t operator*(const double _scalar) const;
+        angle_t operator/(const double _scalar) const;
 
         void operator+=(const angle_t& _a);
         void operator-=(const angle_t& _a);
-        void operator*=(const angle_t& _a);
-        void operator/=(const angle_t& _a);
+        void operator*=(const double _scalar);
+        void operator/=(const double _scalar);
 
         bool operator>(const angle_t& _a) const;
         bool operator<(const angle_t& _a) const;
@@ -72,12 +79,15 @@ namespace units
             inch = 1,
             foot = 12,
             tile = 24
-            // millimetre = -3,
-            // centimetre = -2,
-            // metre = 1
         };
+        // enum metric_units: int8_t
+        // {
+        //     millimetre = -3,
+        //     centimetre = -2,
+        //     metre = 1
+        // }
 
-        distance_t(const double _distance = 0, const distance_units = inch);
+        distance_t(const double _distance = 0, const distance_units _unit = inch);
 
         bool operator==(const distance_t& _distance) const;
         bool operator>(const distance_t& _distance) const;
@@ -100,9 +110,17 @@ namespace units
         /**
         * @brief Gets the value of the distance object in the specified unit
         * 
-        * @param A distance_t::units value to specify what unit the return the value uses
+        * @param _unit distance_t::units value to specify what unit the return the value uses
         **/
         double get(const distance_units& _unit) const;
+
+        /**
+        * @brief Sets the value of the distance object in the specified unit
+        * 
+        * @param _distance the numerical value to set the distance to
+        * @param _unit distance_t::units value to specify what unit the return the value uses
+        **/
+        void set(const double _distance, const distance_units _unit = inch);
         
     private:
         double m_distance_inches;
@@ -117,7 +135,7 @@ namespace units
             volt = 1000
         };
 
-        voltage_t(const double _voltage = 0, const voltage_units = millivolt);
+        voltage_t(const double _voltage = 0, const voltage_units _unit = millivolt);
 
         bool operator==(const voltage_t& _voltage) const;
         bool operator>(const voltage_t& _voltage) const;
@@ -142,6 +160,14 @@ namespace units
         * @param A voltage_t::units value to specify what unit the return the value uses
         **/
         double get(const voltage_units& _unit) const;
+        
+        /**
+        * @brief Sets the value of the voltage object in the specified unit
+        * 
+        * @param _voltage the numerical value to set the voltage to
+        * @param _unit voltage_t::units value to specify what unit the return the value uses
+        **/
+        void set(const double _voltage, const voltage_units _unit);
 
     private:
         double m_voltage_millivolts;
@@ -156,7 +182,7 @@ namespace units
             second = 1000
         };
 
-        duration_t(const double _time = 0, const duration_units = millisecond);
+        duration_t(const double _time = 0, const duration_units _unit = millisecond);
 
         bool operator==(const duration_t& _time) const;
         bool operator>(const duration_t& _time) const;
@@ -182,8 +208,16 @@ namespace units
         **/
         double get(const duration_units& _unit) const;
 
+        /**
+        * @brief Sets the value of the duration object in the specified unit
+        * 
+        * @param _time the numerical value to set the duration to
+        * @param _unit duration_t::units value to specify what unit the return the value uses
+        **/
+        void set(const double _time, const duration_units _unit);
+
     private:
-        double m_time_milliseconds;
+        double m_duration_milliseconds;
     };
 
     namespace literals

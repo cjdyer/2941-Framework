@@ -3,10 +3,6 @@
 #include "Sensor.h"
 #include "Units.h"
 #include <functional>
-#include <thread>
-#include <thread>
-#include <mutex>
-#include <mutex>
 
 using namespace units;
 
@@ -21,7 +17,6 @@ using namespace units;
 //    Timeout
 // Set target
 
-
 using pid_callback_t = std::function<void(const int32_t)>;
 
 struct PID_constants
@@ -32,25 +27,31 @@ struct PID_constants
 class PID
 {
 public:
-    PID(PID_constants _pid_constants, const char* name);
+    PID(PID_constants _pid_constants, const char* _name);
     ~PID();
-
-    void start_pid(const units::duration_t _timeout_ms);
-    void stop_pid();
 
     void set_callback(pid_callback_t _callback);
     void unset_callback();
 
-    void set_target();
-    
-private:
-    void run_pid(const units::duration_t _timeout_ms);
+    void set_target(const units::distance_t _distance);
+
+    void run_pid(void * param);
+
+private: // functions
+
     int16_t calculate();
     
-private:
-    PID_constants m_pid_constants;
+private: // variables
+    const PID_constants m_pid_constants;
+    const char* m_name;
 
-    //std::thread m_handler_thread;
-    //std::mutex m_pid_callback_mutex;
-    //pid_callback_t m_pid_callback;
+    int32_t m_target;
+    bool m_pid_running = false;
+    double m_error, m_derivative;
+
+    double max_output;
+
+    pros::Mutex m_pid_callback_mutex;
+
+    pid_callback_t m_pid_callback;
 };

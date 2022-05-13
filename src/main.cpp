@@ -4,13 +4,6 @@
 #include "Sensor.h"
 #include "main.h"
 
-//Create a robot c like motor sensor setup where users tell the program what is plugged into each port
-// Could this be in a config file? JSON?
-// Chassis::drive_motor_config(2);
-// Object::config
-Chassis::motor_config({leftFrontDrive, leftBackDrive}, {rightFrontDrive, rightBackDrive});
-MainLift.moto
-
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When

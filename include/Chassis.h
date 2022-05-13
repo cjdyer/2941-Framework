@@ -1,5 +1,6 @@
 #pragma once
 #include "MotorGroup.h"
+#include "Config.h"
 
 namespace Chassis
 {
@@ -23,7 +24,4 @@ namespace Chassis
      * This function needs to be constantly looped to be effective
     **/
     extern void ArcadeSingleStick();
-
-    extern MotorGroup leftDrive;
-    extern MotorGroup rightDrive;
 };

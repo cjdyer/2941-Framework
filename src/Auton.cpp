@@ -2,15 +2,12 @@
 
 namespace Auton
 {
-    void RunPID()
-    {
-        
-    }
+    pros::Task* straightPID_task;
 
     void ResetSensors()
     {
-        Chassis::leftDrive.ResetSensors();
-        Chassis::rightDrive.ResetSensors();
+        left_drive.ResetSensors();
+        right_drive.ResetSensors();
     }
 
     PID rotatePID
@@ -24,6 +21,17 @@ namespace Auton
         {17, 0.7, 0},           // kP, kI, kD
         "Chassis Straight PID"  // PIDname
     );
+
+    void InitAuton()
+    {
+        straightPID_task = new pros::Task([=] { straightPID.run_pid((void*)10);  }, "John the PID");
+        pros::Task test_task([=] { rotatePID.run_pid((void*)10);  }, "John the PID");
+    }
+
+    void EndAuton()
+    {
+        delete(straightPID_task);
+    }
 
     void DriveStraight(distance_t _distance)
     {

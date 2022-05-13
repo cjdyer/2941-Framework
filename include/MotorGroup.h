@@ -11,9 +11,10 @@ public:
     /**
      * @brief A DriveTrain object controls one half of your robot's chassis. (for a tank or H drive)
      * 
-     * @param _number_motors The amount of motors
+     * @param _ports The port of each motor
+     * @param _gearset The gearset used in the motors
     **/
-    MotorGroup(const uint8_t _number_motors);
+    MotorGroup(const std::initializer_list<port_t> _ports, Gearset _gearset = Gearset::GREEN);
 
     /**
      * @brief Sends specified volatage to all  motors.
@@ -23,15 +24,6 @@ public:
     void PowerMotors(voltage_t _voltage);
 
     /**
-     * @brief Sets the ports of motors in the group.
-     * 
-     * TODO: Make this protected but able to be used by confing files
-     *
-     * @param _motors a list of port numbers which this container should control
-    **/
-    void SetNumberOfMotors(const port_t* _motors);
-
-    /**
      * @brief Gets the value from the front motor's encoder.
      * 
      * @return The sensor value of the first motor
@@ -39,9 +31,9 @@ public:
     distance_t GetSensor() const;
 
     /**
-     * @brief 
+     * @brief Zeros the position of the motors
      * 
-     *
+     * more elaborate description here i guess
     **/
     void ResetSensors();
 
