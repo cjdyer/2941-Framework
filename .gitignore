@@ -21,7 +21,14 @@ firmware
 include/display
 include/okapi
 include/PROS
+include/pros
 include/api.h
 Makefile
 common.mk
 project.pros
+.cache/
+
+# LATEX
+tutorials/*
+!/tutorials/*.pdf
+!/tutorials/*.tex
