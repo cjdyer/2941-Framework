@@ -11,6 +11,7 @@ enum class Gearset : int
 // Port_t:
 // Needs to have an associated port, duh
 // Needs to be assigned once?
+// What if a sensor and a motor where the same
 
 namespace units
 {
@@ -21,6 +22,7 @@ namespace units
     // typedef short angle_t;
     // typedef long duration_t;
     typedef short port_t;
+    typedef controller_digital_e_t button_t;
 
     // Angle_t:
     // Coversion between RAD and DEG

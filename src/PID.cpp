@@ -58,9 +58,9 @@ int16_t PID::calculate()
     // Calculate integral (If conditions are met).
     integral += m_error * time_difference;
 
-    if( (abs(m_error) > 500/*THIS NEEDS TO NOT BE CONSTANT*/) || (m_error == 0) || (sgn(integral) != sgn(m_error)) )
+    if( (std::abs(m_error) > 500/*THIS NEEDS TO NOT BE CONSTANT*/) || (m_error == 0) || (sgn(integral) != sgn(m_error)) )
         integral = 0;
-    else if(abs(integral) > 9000)
+    else if(std::abs(integral) > 9000)
         integral = 9000 * sgn(integral);
     
     m_derivative = (sensor_value - past_sensor_val) / time_difference; // Calculate derivative.
@@ -68,7 +68,7 @@ int16_t PID::calculate()
     output = m_pid_constants.kP * m_error + m_pid_constants.kI * integral - m_pid_constants.kD * m_derivative; // Calculate output.
 
     // Restrict output to max/min.
-    if (abs(output) > max_output)
+    if (std::abs(output) > max_output)
         output = max_output * sgn(output);
 
     // Save previous sensor value.
