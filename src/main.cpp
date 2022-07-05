@@ -54,6 +54,8 @@ void opcontrol()
 		Chassis::Tank();
 		
 		// TODO: Make interfaces, things like lifts and claws 
+		// TODO: Make button class
+		// TODO: Implement sensor classes
 
 		delay(20);
 	}
