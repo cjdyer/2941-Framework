@@ -16,3 +16,8 @@ _unit_t Sensor<_unit_t>::get()
     //! 0 needs to be actual value from sensor
     return angle_t(0 - offset);
 }
+
+RotationSensor::RotatationSensor()
+{
+    
+}

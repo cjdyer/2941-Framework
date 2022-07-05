@@ -24,6 +24,8 @@ public:
     using Sensor::Sensor;
     using Sensor::reset;
     using Sensor::get;
+private:
+    pros::Rotation sensor;
 };
 
 class DistanceSensor: Sensor<units::distance_t>
@@ -32,4 +34,7 @@ public:
     using Sensor::Sensor;
     using Sensor::reset;
     using Sensor::get;
+
+private:
+    pros::Distance sensor;
 };
