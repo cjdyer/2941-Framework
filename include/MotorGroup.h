@@ -2,6 +2,7 @@
 #include "main.h"
 #include "Units.h"
 #include <vector>
+
 using namespace units;
 
 class MotorGroup
@@ -21,21 +22,21 @@ public:
      * 
      * @param _voltage The voltage to send to the motors (-12 volts to +12 volts)
     **/
-    void PowerMotors(voltage_t _voltage);
+    void power_motors(voltage_t _voltage);
 
     /**
      * @brief Gets the value from the front motor's encoder.
      * 
      * @return The sensor value of the first motor
     **/
-    distance_t GetSensor() const;
+    distance_t get_sensor() const;
 
     /**
      * @brief Zeros the position of the motors
      * 
      * more elaborate description here i guess
     **/
-    void ResetSensors();
+    void reset_sensors();
 
 private:
     std::vector<Motor> m_motors;

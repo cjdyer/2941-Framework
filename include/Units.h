@@ -224,7 +224,8 @@ namespace units
 
     namespace literals
     {
-        angle_t operator "" _deg(long double _angle);
+        angle_t operator "" _deg(void* _angle);
+        
         angle_t operator "" _rad(long double _angle);
         
         distance_t operator "" _inches(long double _distance);

@@ -8,7 +8,6 @@ class Sensor
 {
 public:
     Sensor(port_t _port);
-    ~Sensor();
 
     _unit_t get();
     void reset();
@@ -16,25 +15,46 @@ public:
 protected:
     units::port_t m_port;
     _unit_t offset;
+
+    virtual int32_t read();
 };
 
 class RotationSensor: Sensor<units::angle_t>
 {
 public:
+    RotationSensor(port_t _port);
+
     using Sensor::Sensor;
     using Sensor::reset;
     using Sensor::get;
 private:
-    pros::Rotation sensor;
+    pros::Rotation m_sensor;
+
+    int32_t read() override;
 };
 
 class DistanceSensor: Sensor<units::distance_t>
 {
 public:
+    DistanceSensor(port_t _port);
+
     using Sensor::Sensor;
     using Sensor::reset;
     using Sensor::get;
 
 private:
-    pros::Distance sensor;
+    pros::Distance m_sensor;
+
+    int32_t read() override;
+};
+
+class Button
+{
+public:
+    Button(port_t _port);
+
+    bool get();
+
+private:
+    pros::ADIDigitalIn m_sensor;
 };

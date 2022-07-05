@@ -25,18 +25,18 @@ MotorGroup::MotorGroup(const std::initializer_list<port_t> _ports, Gearset _gear
     }
 }
 
-void MotorGroup::PowerMotors(voltage_t _voltage)
+void MotorGroup::power_motors(voltage_t _voltage)
 {
     for (Motor motor : m_motors)
         motor.move_voltage(_voltage.get(voltage_t::millivolt));
 }
 
-distance_t MotorGroup::GetSensor() const
+distance_t MotorGroup::get_sensor() const
 {
     return m_motors.front().get_position();
 }
 
-void MotorGroup::ResetSensors()
+void MotorGroup::reset_sensors()
 {
     for (Motor motor : m_motors)
         motor.tare_position();

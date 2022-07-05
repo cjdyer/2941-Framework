@@ -5,9 +5,9 @@ namespace units
     namespace literals
     {
         //Angle Literals
-        angle_t operator "" _deg(long double _angle)
+        angle_t operator "" _deg(void* _angle)
         {
-            return angle_t(_angle, angle_t::degrees);
+            return angle_t((int)_angle, angle_t::degrees);
         }
         angle_t operator "" _rad(long double _angle)
         {

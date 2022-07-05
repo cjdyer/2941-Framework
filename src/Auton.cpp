@@ -6,8 +6,8 @@ namespace Auton
 
     void ResetSensors()
     {
-        left_drive.ResetSensors();
-        right_drive.ResetSensors();
+        left_drive.reset_sensors();
+        right_drive.reset_sensors();
     }
 
     PID rotatePID

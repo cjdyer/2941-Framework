@@ -8,8 +8,8 @@ namespace Chassis
 {
     void Tank()
     {
-        left_drive.PowerMotors(controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)   * ANALOGTOVOLTAGE);
-        right_drive.PowerMotors(controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y) * ANALOGTOVOLTAGE);
+        left_drive.power_motors(controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)   * ANALOGTOVOLTAGE);
+        right_drive.power_motors(controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y) * ANALOGTOVOLTAGE);
     }
 
     void Arcade()
@@ -17,8 +17,8 @@ namespace Chassis
         float vertical   = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
         float horizontal = controller.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y);
 
-        left_drive.PowerMotors( (vertical + horizontal) * ANALOGTOVOLTAGE);
-        right_drive.PowerMotors((vertical - horizontal) * ANALOGTOVOLTAGE);
+        left_drive.power_motors( (vertical + horizontal) * ANALOGTOVOLTAGE);
+        right_drive.power_motors((vertical - horizontal) * ANALOGTOVOLTAGE);
     }
 
     void ArcadeSingleStick()
@@ -26,7 +26,7 @@ namespace Chassis
         float vertical   = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
         float horizontal = controller.get_analog(E_CONTROLLER_ANALOG_LEFT_X);
 
-        left_drive.PowerMotors( (vertical + horizontal) * ANALOGTOVOLTAGE);
-        right_drive.PowerMotors((vertical - horizontal) * ANALOGTOVOLTAGE);
+        left_drive.power_motors( (vertical + horizontal) * ANALOGTOVOLTAGE);
+        right_drive.power_motors((vertical - horizontal) * ANALOGTOVOLTAGE);
     }
 }
