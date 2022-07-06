@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Logger.h"
 #include "PID.h"
 #include "Sensor.h"
 #include "MotorGroup.h"
@@ -25,10 +26,10 @@ public:
     void unlink_buttons();
 
 private:
-    void monitor_button(void* _param);
+    static void monitor_buttons(void* _param);
 
 private:
-    Task m_monitor_task(monitor_button);
+    pros::Task m_monitor_task;
     Mutex m_monitor_mutex;
 
     DistanceSensor m_height_sensor;
@@ -37,7 +38,8 @@ private:
     button_t m_up_button;
     button_t m_down_button;
     voltage_t m_max_speed = 12.0_volts;
-    angle_t m_angle = 180.0_deg;
+
+    const char* m_name;
 
     PID m_pid;
 

@@ -18,12 +18,12 @@ _unit_t Sensor<_unit_t>::get()
 
 int32_t RotationSensor::read()
 {
-    return m_sensor.get_position()
+    return m_sensor.get_angle();
 }
 
 int32_t DistanceSensor::read()
 {
-    return m_sensor.get_position()
+    return m_sensor.get();
 }
 
 RotationSensor::RotationSensor(port_t _port)
