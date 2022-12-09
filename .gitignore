@@ -1,0 +1,36 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.bin
+*.elf
+
+# .idea
+.idea/
+
+# PROS
+bin/
+.vscode/
+compile_commands.json
+temp.log
+temp.errors
+*.ini
+.d/
+firmware
+include/display
+include/okapi
+include/PROS
+include/pros
+include/api.h
+
+Makefile
+common.mk
+project.pros
+.cache/
+test/build/
+
+# LATEX
+tutorials/*
+!/tutorials/*.pdf
+!/tutorials/*.tex
