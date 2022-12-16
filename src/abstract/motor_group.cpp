@@ -1,4 +1,4 @@
-#include "motor_group.h"
+#include "abstract/motor_group.h"
 #include "pros/motors.h"
 
 MotorGroup::MotorGroup(const std::initializer_list<port_t> _ports, Gearset _gearset)

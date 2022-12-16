@@ -1,8 +1,8 @@
 #pragma once
 
-#include "pid.h"
-#include "sensor.h"
-#include "motor_group.h"
+#include "abstract/pid.h"
+#include "abstract/sensor.h"
+#include "abstract/motor_group.h"
 #include "units.h"
 
 using namespace units;

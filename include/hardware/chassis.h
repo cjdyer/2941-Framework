@@ -1,6 +1,6 @@
 #pragma once
 
-#include "motor_group.h"
+#include "abstract/motor_group.h"
 #include "config.h"
 
 namespace Chassis

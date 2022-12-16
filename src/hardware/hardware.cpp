@@ -1,4 +1,4 @@
-#include "interfaces.h"
+#include "hardware.h"
 #include "config.h"
 
 Lift::Lift(const std::initializer_list<port_t> _motor_ports, port_t _sensor_port, 

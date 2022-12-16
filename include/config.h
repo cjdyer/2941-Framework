@@ -1,8 +1,8 @@
 #pragma once
 
 #include "pros/misc.hpp"
-#include "motor_group.h"
-#include "pid.h"
+#include "abstract/motor_group.h"
+#include "abstract/pid.h"
 
 extern pros::Controller controller;
 
