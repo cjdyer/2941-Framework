@@ -1,11 +1,14 @@
 #pragma once
 
-#include "units.h"
+#include "framework/units.h"
 #include "pros/adi.hpp"
 #include "pros/rotation.hpp"
 #include "pros/distance.hpp"
 
 using namespace units;
+
+namespace abstract
+{
 
 template <typename _unit_t>
 class Sensor
@@ -62,3 +65,5 @@ public:
 private:
     pros::ADIDigitalIn m_sensor;
 };
+
+} // namespace abstract

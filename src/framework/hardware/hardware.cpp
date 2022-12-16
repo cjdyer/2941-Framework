@@ -1,6 +1,8 @@
-#include "hardware.h"
-#include "config.h"
+#include "framework/hardware/hardware.h"
+#include "framework/config.h"
 
+namespace hardware
+{
 Lift::Lift(const std::initializer_list<port_t> _motor_ports, port_t _sensor_port, 
            PID_constants _pid_constants, const char* _name) :
     m_motors(_motor_ports),
@@ -59,3 +61,5 @@ void Lift::monitor_buttons(void* _param)
 
 // button_t m_up_button;
 // button_t m_down_button;
+
+} // namespace hardware

@@ -1,9 +1,12 @@
-#include "odometery.h"
+#include "framework/functional/odometery.h"
 
 #include <stdexcept>
 
+namespace functional
+{
 namespace Odometery
 {
+
     void odo_calculate()
     {
         throw std::runtime_error("Not Implemented");
@@ -20,3 +23,4 @@ namespace Odometery
     }
 
 } // namespace Odometery
+} // namespace functional

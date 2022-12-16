@@ -1,4 +1,7 @@
-#include "sensor.h"
+#include "framework/abstract/sensor.h"
+
+namespace abstract
+{
 
 template <typename _unit_t>
 Sensor<_unit_t>::Sensor(port_t _port)
@@ -39,3 +42,5 @@ bool Button::get()
 {
     return m_sensor.get_value();
 }
+
+} // namespace abstract

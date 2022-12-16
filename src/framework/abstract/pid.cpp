@@ -1,7 +1,10 @@
-#include "pid.h"
+#include "framework/abstract/pid.h"
 #include "pros/rtos.hpp"
 
 #define sgn(_n) ( ((_n) > 0) * 1 + ((_n) < 0) * -1 )
+
+namespace abstract
+{
 
 PID::PID(const PID_constants& _pid_constants, const char* _name)
     : m_pid_constants(_pid_constants), m_name(_name) { }
@@ -38,3 +41,5 @@ int16_t PID::calculate(const double _sensor_value)
     
     return output;
 }
+
+} // namespace abstract

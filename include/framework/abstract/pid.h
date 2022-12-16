@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sensor.h"
-#include "units.h"
+#include "framework/abstract/sensor.h"
+#include "framework/units.h"
 
 using namespace units;
 
@@ -15,6 +15,9 @@ using namespace units;
 //    Complete
 //    Timeout
 // Set target
+
+namespace abstract
+{
 
 struct PID_constants
 {
@@ -41,3 +44,5 @@ private: // variables
 
     int16_t max_output = 10000;
 };
+
+} // namespace abstract

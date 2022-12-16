@@ -1,14 +1,16 @@
 #pragma once
 
-#include "abstract/pid.h"
-#include "abstract/sensor.h"
-#include "abstract/motor_group.h"
-#include "units.h"
+#include "framework/abstract/pid.h"
+#include "framework/abstract/sensor.h"
+#include "framework/abstract/motor_group.h"
+#include "framework/units.h"
 
 using namespace units;
 using namespace units::literals;
+using namespace abstract;
 
-
+namespace hardware
+{
 //! PID is not tuned
 class Lift
 {
@@ -65,3 +67,5 @@ private:
     RotationSensor* m_height_sensor;
     MotorGroup* m_motors;
 };
+
+} // namespace hardware

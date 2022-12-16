@@ -1,8 +1,10 @@
 #pragma once
 
-#include "abstract/motor_group.h"
-#include "config.h"
+#include "framework/abstract/motor_group.h"
+#include "framework/config.h"
 
+namespace hardware
+{
 namespace Chassis
 {
     /**
@@ -26,4 +28,5 @@ namespace Chassis
     **/
     extern void ArcadeSingleStick();
     
-}; // namespace Chassis
+} // namespace Chassis
+} // namespace hardware

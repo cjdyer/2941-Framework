@@ -1,6 +1,8 @@
 #include "config.h"
 #include "pros/misc.h"
 
+using namespace abstract;
+
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 MotorGroup left_drive({1, -2}, Gearset::GREEN);

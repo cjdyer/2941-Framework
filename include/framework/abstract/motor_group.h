@@ -1,10 +1,13 @@
 #pragma once
 
-#include "units.h"
+#include "framework/units.h"
 #include "pros/motors.hpp"
 #include <vector>
 
 using namespace units;
+
+namespace abstract
+{
 
 class MotorGroup
 {
@@ -42,3 +45,5 @@ public:
 private:
     std::vector<pros::Motor> m_motors;
 };
+
+} // namespace abstract

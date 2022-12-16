@@ -1,12 +1,10 @@
-#include "hardware/chassis.h"
-#include "config.h"
-#include "abstract/sensor.h"
-#include "abstract/pid.h"
-#include "interface/odometery.h"
+#include "framework/hardware/chassis.h"
+#include "framework/config.h"
+#include "framework/abstract/sensor.h"
+#include "framework/abstract/pid.h"
+#include "framework/functional/odometery.h"
 
-void initialize() {}
-void disabled() {}
-void competition_initialize() {}
+using namespace hardware;
 
 void opcontrol() 
 {

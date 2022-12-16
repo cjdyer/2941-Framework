@@ -1,8 +1,10 @@
-#include "abstract/pid.h"
-#include "chassis.h"
+#include "framework/abstract/pid.h"
+#include "framework/hardware/chassis.h"
 
 #define ANALOGTOVOLTAGE 12000 / 127 * 0.97
 
+namespace hardware
+{
 namespace Chassis
 {
     void Tank()
@@ -28,4 +30,6 @@ namespace Chassis
         left_drive.power_motors( (vertical + horizontal) * ANALOGTOVOLTAGE);
         right_drive.power_motors((vertical - horizontal) * ANALOGTOVOLTAGE);
     }
-}
+
+} // namespace Chassis
+} // namespace hardware

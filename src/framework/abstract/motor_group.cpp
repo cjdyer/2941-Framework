@@ -1,5 +1,8 @@
-#include "abstract/motor_group.h"
+#include "framework/abstract/motor_group.h"
 #include "pros/motors.h"
+
+namespace abstract
+{
 
 MotorGroup::MotorGroup(const std::initializer_list<port_t> _ports, Gearset _gearset)
 {
@@ -42,3 +45,5 @@ void MotorGroup::reset_sensors()
     for (pros::Motor motor : m_motors)
         motor.tare_position();
 }
+
+} // namespace abstract
