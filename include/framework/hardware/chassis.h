@@ -12,21 +12,26 @@ namespace Chassis
      * 
      * This function needs to be constantly looped to be effective
     **/
-    extern void Tank();
+    extern void tank();
 
     /**
      * @brief Drives the robot using arcade drive controls.
      * 
      * This function needs to be constantly looped to be effective
     **/
-    extern void Arcade();
+    extern void arcade();
 
     /**
      * @brief Drives the robot using single stick arcade drive controls.
      * 
      * This function needs to be constantly looped to be effective
     **/
-    extern void ArcadeSingleStick();
+    extern void arcade_single_stick();
+
+    // Move with values
+    extern void drive_straight_voltage(voltage_t voltage);
+
+    extern void drive_rotate_voltage(voltage_t voltage);
     
 } // namespace Chassis
 } // namespace hardware

@@ -20,20 +20,7 @@ void autonomous()
         };
     } };
 
-    pros::Task drive_task = pros::Task{ [] 
-    {
-        PID drive_pid = PID(drive_pid_constants, "Drive PID");
-
-        while (!pros::Task::notify_take(true, 10)) 
-        {
-            // The same PID is used for both drive sides as its assumed they exist
-            // as the same mechanical system. (Can rewrite when we test on a physical machine)
-            int left_drive_power_mv = drive_pid.calculate(Odometery::odo_get_target_left());
-            int right_drive_power_mv = drive_pid.calculate(Odometery::odo_get_target_right());
-            left_drive.power_motors(left_drive_power_mv);
-            right_drive.power_motors(right_drive_power_mv);
-        }
-    } };
+    pros::Task drive_task = pros::Task{ [] };
 
     while (true) 
     {

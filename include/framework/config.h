@@ -10,5 +10,3 @@ extern abstract::MotorGroup left_drive;
 extern abstract::MotorGroup right_drive;
 
 extern abstract::PID_constants drive_pid_constants;
-
-// Make a YAML file and read configs from that
